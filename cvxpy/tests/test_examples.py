@@ -370,7 +370,7 @@ class TestExamples(BaseTest):
         # DCP attr causes error because not all the curvature
         # matrices are reduced to constants when an atom
         # is scalar.
-        cvx.square(cvx.norm(D @ x)) + cvx.square(Z @ y)
+        _ = cvx.square(cvx.norm(D @ x)) + cvx.square(Z @ y)
 
     def test_intro(self) -> None:
         """Test examples from cvxpy.org introduction.

@@ -46,7 +46,9 @@ class TestCurvature(unittest.TestCase):
         self.assertEqual((self.const - self.cvx).curvature, self.ccv.curvature)
         self.assertEqual((self.unknown_curv - self.ccv).curvature, UNKNOWN)
         self.assertEqual((self.cvx - self.ccv).curvature, self.cvx.curvature)
-        self.assertEqual((self.cvx - self.cvx).curvature, UNKNOWN)
+        curvature_1 = self.cvx
+        curvature_2 = self.cvx
+        self.assertEqual((curvature_2 - curvature_1).curvature, UNKNOWN)
         self.assertEqual((self.aff - self.ccv).curvature, self.cvx.curvature)
 
     def test_sign_mult(self) -> None:

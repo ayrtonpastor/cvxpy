@@ -636,7 +636,7 @@ class TestExpressions(BaseTest):
 
         # Matrices: Incompatible dimensions
         with self.assertRaises(ValueError):
-            Constant([[2, 1], [2, 2]]) @ self.C
+            _ = Constant([[2, 1], [2, 2]]) @ self.C
 
         # Affine times affine is okay
         with warnings.catch_warnings():
@@ -658,18 +658,18 @@ class TestExpressions(BaseTest):
         # By default, warnings are raised if we access matmul from *.
         c = Constant([[2], [2]])
         with warnings.catch_warnings(record=True) as w:
-            c * self.x
+            _ = c * self.x
             self.assertEqual(2, len(w))
             self.assertEqual(w[0].category, UserWarning)
             self.assertEqual(w[1].category, DeprecationWarning)
             # repeat, to make sure warnings continue to be displayed
-            c * self.x
+            _ = c * self.x
             self.assertEqual(4, len(w))
             self.assertEqual(w[2].category, UserWarning)
             self.assertEqual(w[3].category, DeprecationWarning)
             # suppress one of the two warnings
             warnings.simplefilter('ignore', DeprecationWarning)
-            c * self.x
+            _ = c * self.x
             self.assertEqual(5, len(w))
             # suppress both warnings
             warnings.simplefilter('ignore', UserWarning)
@@ -678,7 +678,7 @@ class TestExpressions(BaseTest):
             # verify that an error can be raised.
             warnings.simplefilter("error", UserWarning)
             with self.assertRaises(UserWarning):
-                c * self.x
+                _ = c * self.x
 
     def test_matmul_expression(self) -> None:
         """Test matmul function, corresponding to .__matmul__( operator.

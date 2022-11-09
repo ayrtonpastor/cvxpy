@@ -106,7 +106,7 @@ class TestAtoms(BaseTest):
         x = cp.Variable()
         y = cp.Variable()
         with self.assertRaises(Exception) as cm:
-            cp.norm([x, y]) <= 1 #NOSONAR
+            _ = cp.norm([x, y]) <= 1
         self.assertTrue(str(cm.exception) in (
             "The input must be a single CVXPY Expression, not a list. "
             "Combine Expressions using atoms such as bmat, hstack, and vstack."))

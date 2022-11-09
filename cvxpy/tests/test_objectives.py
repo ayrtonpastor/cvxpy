@@ -119,7 +119,7 @@ class TestObjectives(unittest.TestCase):
 
         # Test Minimize + Maximize
         with self.assertRaises(DCPError) as cm:
-            cp.Minimize(expr1) + cp.Maximize(-expr2)
+            _ = cp.Minimize(expr1) + cp.Maximize(-expr2)
         self.assertEqual(str(cm.exception), "Problem does not follow DCP rules.")
 
         assert (cp.Minimize(expr1) - cp.Maximize(-expr2)).is_dcp()

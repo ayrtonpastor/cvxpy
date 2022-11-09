@@ -77,7 +77,9 @@ class TestMatrices(unittest.TestCase):
         self.assertExpression(self.x + v, (2,))
         self.assertExpression(v + v + self.x, (2,))
         self.assertExpression(self.x - v, (2,))
-        self.assertExpression(v - v - self.x, (2,))
+        left_vector = v
+        right_vector = v
+        self.assertExpression(left_vector - right_vector - self.x, (2,))
         self.assertExpression(self.x <= v, (2,))
         self.assertExpression(v <= self.x, (2,))
         self.assertExpression(self.x == v, (2,))
@@ -98,7 +100,9 @@ class TestMatrices(unittest.TestCase):
         self.assertExpression(v + self.x, (2,))
         self.assertExpression(v * self.x, (2,))
         self.assertExpression(self.x - v, (2,))
-        self.assertExpression(v - v - self.x, (2,))
+        left_scalar = v
+        right_scalar = v
+        self.assertExpression(left_scalar - right_scalar - self.x, (2,))
         self.assertExpression(self.x <= v, (2,))
         self.assertExpression(v <= self.x, (2,))
         self.assertExpression(self.x == v, (2,))
@@ -129,7 +133,9 @@ class TestMatrices(unittest.TestCase):
         self.assertExpression(A + var, (4, 2))
         self.assertExpression(B @ var, (4, 2))
         self.assertExpression(var - A, (4, 2))
-        self.assertExpression(A - A - var, (4, 2))
+        left_matrix = A
+        right_matrix = A
+        self.assertExpression(left_matrix - right_matrix - var, (4, 2))
         if PY35:
             self.assertExpression(var.__rmatmul__(B), (4, 2))
         # self.assertExpression(var <= A, (4, 2))

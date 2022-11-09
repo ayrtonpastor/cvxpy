@@ -673,7 +673,7 @@ class TestExpressions(BaseTest):
             self.assertEqual(5, len(w))
             # suppress both warnings
             warnings.simplefilter('ignore', UserWarning)
-            c * self.x
+            _ = c * self.x
             self.assertEqual(len(w), 5)
             # verify that an error can be raised.
             warnings.simplefilter("error", UserWarning)
@@ -1262,7 +1262,7 @@ class TestExpressions(BaseTest):
         col_scale = Variable(n)
 
         with self.assertRaises(ValueError) as cm:
-            A + col_scale
+            _ = A + col_scale
         self.assertEqual(str(cm.exception), "Cannot broadcast dimensions  (3, 4) (4,)")
 
         col_scale = Variable([1, n])

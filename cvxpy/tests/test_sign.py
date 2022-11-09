@@ -36,7 +36,9 @@ class TestSign(BaseTest):
     def test_sub(self) -> None:
         self.assertEqual((self.pos - self.neg).sign, self.pos.sign)
         self.assertEqual((self.neg - self.zero).sign, self.neg.sign)
-        self.assertEqual((self.pos - self.pos).sign, self.unknown.sign)
+        left_pos = self.pos
+        right_pos = self.pos
+        self.assertEqual((left_pos - right_pos).sign, self.unknown.sign)
 
     def test_mult(self) -> None:
         self.assertEqual((self.zero * self.pos).sign, self.zero.sign)

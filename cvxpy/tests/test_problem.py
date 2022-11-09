@@ -490,7 +490,7 @@ class TestProblem(BaseTest):
 
         # Test cp.Minimize + cp.Maximize
         with self.assertRaises(DCPError) as cm:
-            prob1 + prob3
+            _ = prob1 + prob3
         self.assertEqual(str(cm.exception), "Problem does not follow DCP rules.")
 
     # Test problem multiplication by scalar
@@ -1162,14 +1162,16 @@ class TestProblem(BaseTest):
         self.assertAlmostEqual(result, 4)
 
         obj = cp.Minimize(cp.sum(cp.square(self.x)))
-        constraints = [self.x == self.x]
+        left_contraint = self.x
+        right_constraint = self.x
+        constraints = [left_contraint == right_constraint]
         p = Problem(obj, constraints)
         result = p.solve(solver=s.SCS)
         self.assertAlmostEqual(result, 0)
 
         with self.assertRaises(ValueError) as cm:
             obj = cp.Minimize(cp.sum(cp.square(self.x)))
-            constraints = [self.x == self.x]
+            constraints = [left_contraint == right_constraint]
             problem = Problem(obj, constraints)
             problem.solve(solver=s.ECOS)
         self.assertEqual(

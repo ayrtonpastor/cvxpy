@@ -52,6 +52,7 @@ class SCIPY(ConicSolver):
         """Imports the solver.
         """
         from scipy import optimize as opt
+        opt  # For flake8
 
     def name(self):
         """The name of the solver.

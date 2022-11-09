@@ -62,6 +62,7 @@ class SDPA(ConicSolver):
         """Imports the solver.
         """
         import sdpap
+        sdpap  # For flake8
 
     def accepts(self, problem) -> bool:
         """Can SDPA solve the problem?
